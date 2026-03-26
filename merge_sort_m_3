@@ -1,0 +1,56 @@
+# merge sort method 3
+
+def m_sort(arr,start,end):
+    mid = (start + end) // 2
+    i = start
+    j = mid
+
+    # creation of teporary array
+    temp = []
+
+    # condition based on lessthan and greaterthan
+    while i < mid and j < end:
+
+        if arr[i] < arr[j]:
+            temp.append(arr[i])
+            i += 1
+
+        else:
+            temp.append(arr[j])
+            j += 1
+
+    # first array value balance
+    while i < mid:
+        temp.append(arr[i])
+        i += 1
+
+    # second array value balance
+    while j < end:
+        temp.append(arr[j])
+        j += 1
+
+    for k in range(len(temp)):
+        arr[start+k] = temp[k]
+    
+    return arr
+
+# len of the spliting the array
+def merge_sort_split(arr,start,end):
+    mid = (start + end) // 2
+    
+    # stoping the array
+    if end - start == 1:
+        return
+    
+    merge_sort_split(arr,start,mid)
+
+    merge_sort_split(arr,mid,end)
+
+    m_sort(arr,start,end)
+
+def testing():
+    arr = [1,3,7,9,1,2,5,6]
+    merge_sort_split(arr,0,len(arr))
+    print(arr)
+
+testing()
